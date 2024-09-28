@@ -17,7 +17,7 @@ ui <- navbarPage(
   theme = bslib::bs_theme(bootswatch = "cerulean"),
   title = "Empirical Stock Selection and Portfolio Optimizer",
   
-  # First Tab: Stock Exploratory Analysis
+  #Stock Exploratory Analysis
   tabPanel("Stock Exploratory Analysis",
            sidebarLayout(
              sidebarPanel(
@@ -48,7 +48,7 @@ ui <- navbarPage(
            )
   ),
   
-  # Second Tab: Stock Selection Model Using Regression Analysis
+  #Stock Selection Model Using Regression Analysis
   tabPanel("Best Stock Price Prediction Model Using Regression Analysis",
            sidebarLayout(
              sidebarPanel(
@@ -64,7 +64,7 @@ ui <- navbarPage(
            )
   ),
   
-  # Third Tab: Stock Selection Model Using Negative BIC
+  #Stock Selection Model Using Negative BIC
   tabPanel("Best Stock Price Prediction Model Using Negative BIC",
            sidebarLayout(
              sidebarPanel(
@@ -79,6 +79,7 @@ ui <- navbarPage(
              )
            )
   ),
+  #Time Series Analysis and Prediction
   tabPanel("Time Series Analysis and Prediction",
            sidebarLayout(
              sidebarPanel(
@@ -110,7 +111,7 @@ ui <- navbarPage(
 )
 
 
-# Define server logic
+# Server logic
 server <- function(input, output, session) {
   
   # Reactive expression to get stock data for stock 1
@@ -125,7 +126,7 @@ server <- function(input, output, session) {
     return(stock_data)
   })
   
-  # Output raw data table for stock 1 (first 10 observations)
+  # Output a preview of the raw data in a table for chosen stock
   output$rawData1 <- renderUI({
     req(stock_data1())
     
@@ -151,7 +152,7 @@ server <- function(input, output, session) {
     HTML(raw_data_table)
   })
   
-  # Output summary statistics for the stock 
+  # Summary statistics for the stock 
   output$summaryStats1 <- renderUI({
     req(stock_data1())
     
@@ -319,8 +320,6 @@ server <- function(input, output, session) {
     
     p_ts  # Return the plot
   })
-  
-  
   
   #helper function to update variable choices
   update_variable_choices <- function(ticker_input, dependent_var_input,
@@ -556,7 +555,7 @@ server <- function(input, output, session) {
     new_data <- stock_data_ts()$test %>%
       mutate(!!sym(adjusted_column_name) := lag(!!sym(adjusted_column_name), 1),
              lag2 = lag(!!sym(adjusted_column_name), 2)) %>%
-      drop_na()  # Ensure no NAs in the data
+      drop_na()  # remove NAs from the data
     
     # Forecast for the test dataset
     test_forecast <- best_model %>%
