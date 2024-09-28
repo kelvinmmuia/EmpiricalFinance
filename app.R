@@ -572,7 +572,7 @@ server <- function(input, output, session) {
     forecast_df_combined <- forecast_df %>%
       left_join(actual_prices, by = "Date") %>%
       select(.model, Date, Actual, .mean) %>%
-      mutate(Model = .model, Date=Date, Adjusted_Price=Actual, Point_forecast=.mean)%>%
+      mutate(Best.Model = .model, Date=Date, Adjusted.Price=Actual, Point.Forecast=.mean)%>%
       select(-.model, -Actual, -.mean)%>%
       tail(10)  # Keep only the last 10 rows
     
