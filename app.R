@@ -21,7 +21,7 @@ ui <- navbarPage(
   tabPanel("Stock Exploratory Analysis",
            sidebarLayout(
              sidebarPanel(
-               textInput("ticker1", "Enter Ticker Symbol for Stock 1:", value = "AAPL"),
+               textInput("ticker1", "Enter Ticker Symbol for Stock:", value = "AAPL"),
                dateRangeInput("dateRange", "Select Date Range:",
                               start = Sys.Date() - 365 * 2, end = Sys.Date()),
                selectInput("periodicity", "Select Periodicity:",
