@@ -17,9 +17,6 @@ ui <- navbarPage(
   theme = bslib::bs_theme(bootswatch = "cerulean"),
   title = "Empirical Stock Selection and Portfolio Optimizer",
   
-  # Custom CSS for styling
-  tags$head(tags$link(rel = "stylesheet", type = "text/css", href = "styles.css")),
-  
   # First Tab: Stock Exploratory Analysis
   tabPanel("Stock Exploratory Analysis",
            sidebarLayout(
