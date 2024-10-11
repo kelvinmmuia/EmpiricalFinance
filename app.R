@@ -454,7 +454,7 @@ server <- function(input, output, session) {
     req(stock_data_ts())
     
     train_tsibble <- stock_data_ts()$train
-    plot <- autoplot(train_tsibble, value = stock_data_ts()$adjusted_column_name) +
+    plot <- autoplot(train_tsibble) +
       labs(title = "Adjusted Price over Time", x = "Date", y = "Price")
     
     ggplotly(plot)
